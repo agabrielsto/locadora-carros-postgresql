@@ -1,0 +1,24 @@
+services:
+  db:
+    image: postgres:16
+    container_name: locadora_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: locadora
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d:ro
+      - ./tests:/tests:ro
+      - ./analises:/analises:ro
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      # -h 127.0.0.1 força TCP: só fica saudável depois que os scripts de ./sql terminam
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U postgres -d locadora"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  pgdata:
