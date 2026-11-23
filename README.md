@@ -1,6 +1,10 @@
 # Locadora de carros (PostgreSQL)
 
-Modelagem de um banco de dados de locadora de carros. Parti do exercício do curso SQL Impressionador (Hashtag Treinamentos), que tinha 4 tabelas, e ampliei com regras de negócio no banco, uma camada analítica e testes.
+Banco de dados de uma locadora de carros em PostgreSQL, do modelo de dados à análise. O projeto começou como um exercício do curso SQL Impressionador (Hashtag Treinamentos), que tinha 4 tabelas, e eu o ampliei até ter regras de negócio garantidas pelo próprio banco, uma camada analítica em modelo estrela e testes automatizados.
+
+O banco registra agências, funcionários, frota, clientes, aluguéis, pagamentos e manutenções. Ele impede, por exemplo, que o mesmo carro seja alugado por dois clientes ao mesmo tempo, calcula o valor do aluguel com acréscimo por atraso e deriva a situação atual de cada carro (alugado, em manutenção ou disponível) a partir do histórico. Um segundo schema reúne os dados em uma tabela fato e quatro dimensões para consultas analíticas.
+
+Tecnologias: PostgreSQL 16, SQL e PL/pgSQL, Docker e GitHub Actions.
 
 ## O que tem
 
